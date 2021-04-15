@@ -61,9 +61,7 @@ def send_answer(message):
     file = requests.get('https://api.telegram.org/file/bot{0}/{1}'.format(token, file_info.file_path))
     for result in speech_to_text(file.content):
         bot.send_message(message.chat.id, format(result.alternatives[0].transcript),reply_to_message_id=message.message_id)
-    #with open('voice.flac', 'wb') as f:
-     #   f.write(file.content)
-        # upload_blob('my-audio-bucket-try','voice.flac','audiofromtg.flac')
+
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
