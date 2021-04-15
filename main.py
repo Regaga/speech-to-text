@@ -1,6 +1,5 @@
 import telebot
 import requests
-from google.cloud import storage
 from google.cloud import speech
 import subprocess
 import tempfile
@@ -52,17 +51,7 @@ def speech_to_text(bytes=None):
     return (response.results)
 
 
-def upload_blob(bucket_name, source_file_name, destination_blob_name):
-    storage_client = storage.Client()
-
-    bucket = storage_client.bucket(bucket_name)
-
-    blob = bucket.blob(destination_blob_name)
-
-    blob.upload_from_filename(source_file_name)
-
-
-token = '1327784695:AAHRqaZlwAbZV8j1lsLPKx_OV_gJnglY3ZE'
+token=os.environ["TOKEN"]
 bot = telebot.TeleBot(token)
 
 
